@@ -64,6 +64,164 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-环形链表II" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/10/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/" class="article-date">
+  <time datetime="2023-04-10T04:06:36.000Z" itemprop="datePublished">2023-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/10/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/">Linked List Cycle II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环形链表II"><a href="#环形链表II" class="headerlink" title="环形链表II"></a>环形链表II</h2><p>给定一个链表的头节点  head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。<br>如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。<br>不允许修改 链表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> head, slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">null</span> &amp;&amp; fast.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            <span class="keyword">if</span>(fast == slow)&#123;</span><br><span class="line">                fast = head;</span><br><span class="line">                <span class="keyword">while</span>(fast != slow)&#123;</span><br><span class="line">                    fast = fast.next;</span><br><span class="line">                    slow = slow.next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> fast;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题使用双指针，让快指针一次走两步，慢指针一次走一步，当两者相遇，证明链表有环；设链表长度为a，环长度为b，，快指针走了f，慢指针走了s，f = 2s，f比s多走了n圈，f = s + nb，以上两式相减得：f = 2nb，s = nb；slow指针位置不变 ，将fast指针重新指向链表头部节点，slow和fast同时每轮向前走1步，当 fast 指针走到f = a步时，slow指针走到步s = a + nb，此时 两指针重合，并同时指向链表环入口，返回fast</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/10/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/" data-id="clgabyzmg0005nset3m5zfdn3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-链表相交" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/10/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4/" class="article-date">
+  <time datetime="2023-04-10T03:54:04.000Z" itemprop="datePublished">2023-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/10/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4/">Intersection of Two Linked Lists LCCI</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="链表相交"><a href="#链表相交" class="headerlink" title="链表相交"></a>链表相交</h2><p>给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。<br>题目数据 保证 整个链式结构中不存在环。<br>注意，函数返回结果后，链表必须保持其原始结构 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">A</span> <span class="operator">=</span> headA, B = headB;</span><br><span class="line">        <span class="keyword">while</span>(A != B)&#123;</span><br><span class="line">            A = A != <span class="literal">null</span> ? A.next : headB;</span><br><span class="line">            B = B != <span class="literal">null</span> ? B.next : headA;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题要点设A链表长度La，B链表长度Lb，相交结点个数n（倒数），A到n的距离La - n，B到n的距离Lb - n，为让两者等长，使其为La + Lb - n，就是让A先走La，再走Lb - n步，就是让B先走Lb，再走La - n步，这样两者链表等长，当结点A等于结点B时，两链表相交返回结点A</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/10/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4/" data-id="clgabyzmk000bnsethxzn3u3q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-删除链表的倒数第N个节点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/10/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/" class="article-date">
+  <time datetime="2023-04-10T03:06:19.000Z" itemprop="datePublished">2023-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/10/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">Remove Count Backwards N th Node</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h2><p>给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">cnt</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">null</span> &amp;&amp; fast.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        slow.next = slow.next.next;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题要点是让快指针从<code>dummy</code>先走n步，再让快慢指针同时走，直到快指针走到结尾，让慢指针<code>slow.next = slow.next.next</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/10/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/" data-id="clgabyzm70001nset1j6s1730" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-两两交换链表中的节点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/10/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="article-date">
+  <time datetime="2023-04-10T01:11:07.000Z" itemprop="datePublished">2023-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/10/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">Swap Nodes in Pairs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="两两交换链表中的节点"><a href="#两两交换链表中的节点" class="headerlink" title="两两交换链表中的节点"></a>两两交换链表中的节点</h2><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">swapPairs</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span> || head.next == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">next</span> <span class="operator">=</span> head.next;</span><br><span class="line">        head.next = swapPairs(next.next);</span><br><span class="line">        next.next = head;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>递归写法，条件为<code>head == null || head.next == null</code>时，由于没有两个结点可供操作（head、head.next）递归结束；否则每2个结点传入递归方法，设当前链表结点为[head,next,next.next]，其中当前递归操作结点为<code>head</code>、<code>next</code>，<code>next.next</code>泛指链表中的所有后继结点；先将<code>head</code>的后继指向<strong>交换后的</strong><code>next.next</code>，再将<code>next</code>的后继指向<code>head</code>，此时链表顺序就成了[next,head,next.next]，此时再将<code>next.next</code>作为递归条件传入下一层递归。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">swapPairs</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span> || head.next == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">cur</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="keyword">while</span>(cur.next!= <span class="literal">null</span> &amp;&amp; cur.next.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">temp</span> <span class="operator">=</span> cur.next;</span><br><span class="line">            cur.next = cur.next.next;</span><br><span class="line">            temp.next = cur.next.next;</span><br><span class="line">            cur.next.next = temp;</span><br><span class="line">            cur = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非递归写法，当当前结点有下一结点和下二结点时，<code>temp</code>为下一结点，当前结点<code>cur</code>的后继为下二结点，下一结点的后继等于下二结点的后继，下二结点的后继等于下一结点</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/10/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" data-id="clgabyzlz0000nset3xeufwmj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-反转链表" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="article-date">
@@ -78,7 +236,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">ReverseLinkedList</a>
+      <a class="article-title" href="/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">Reverse Linked List</a>
     </h1>
   
 
@@ -93,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" data-id="clg6qh0zj00015get9rvo95bw" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" data-id="clgabyzmb0003nsetgf7dgzi4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -117,7 +275,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/07/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8/">DesignLinkedList</a>
+      <a class="article-title" href="/2023/04/07/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8/">Design LinkedList</a>
     </h1>
   
 
@@ -132,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/07/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8/" data-id="clg6qh0zs00065get1qush93d" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/07/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8/" data-id="clgabyzmi0009nsetcl8uazrd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -156,7 +314,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/">RemoveLinkedListElement</a>
+      <a class="article-title" href="/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/">Remove Linked List Elements</a>
     </h1>
   
 
@@ -173,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" data-id="clg6qh0zr00055gete98e2hwi" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" data-id="clgabyzmg0006nsetb0oj6x8p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -197,7 +355,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/">螺旋矩阵 II</a>
+      <a class="article-title" href="/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/">Spiral Matrix II</a>
     </h1>
   
 
@@ -212,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/" data-id="clg6qh0zq00045get76oqgtgs" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/" data-id="clgabyzmi0008nsetb4kzfmgh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +394,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">长度最小的子数组</a>
+      <a class="article-title" href="/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">Minimum Size Subarray Sum</a>
     </h1>
   
 
@@ -251,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" data-id="clg6qh0zt00075gethlzc9pzp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" data-id="clgabyzmj000anset7li70plh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,7 +433,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/">有序数组的平方</a>
+      <a class="article-title" href="/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/">Sorted Squares</a>
     </h1>
   
 
@@ -290,90 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" data-id="clg6qh0zp00025get0wmn9zr7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-移除元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/04/05/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" class="article-date">
-  <time datetime="2023-04-05T14:23:53.000Z" itemprop="datePublished">2023-04-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/05/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">RemoveElement</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><p>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。<br>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">slow</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">fast</span> <span class="operator">=</span> <span class="number">0</span>; fast &lt; nums.length; fast++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[fast] != val)&#123;</span><br><span class="line">                nums[slow++] = nums[fast];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用同向双指针，每次移动快指针式时进行判断，若<code>nums[fast] != val</code> 则将快指针的值赋给慢指针的值，<code>slow++</code>，最后返回慢指针的位置上</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/05/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" data-id="clg6qh0zq00035getbf4x7zz4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-二分查找" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="article-date">
-  <time datetime="2023-04-05T13:17:12.000Z" itemprop="datePublished">2023-04-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">二分查找</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>在数组中查找target，如果target存在，返回其下标。</p>
-<h3 id="左闭右闭-left-right"><a href="#左闭右闭-left-right" class="headerlink" title="左闭右闭[left,right]"></a>左闭右闭[left,right]</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> nums.length - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">			right = mid - <span class="number">1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述例子中由于区间是左闭右闭，因此左右都必须取到数组上的值，因此<code>left = 0</code> ，<code>right = nums.length - 1</code> ，且由于左右都可以取到值，所以判断条件为<code>left &lt;= right</code> ，由于进行判断时右值会被实际取到且已判断<code>nums[mid] != target</code> 因此<code>right = mid - 1</code> ，<code>left = mid + 1</code></p>
-<h3 id="左闭右开-left-right"><a href="#左闭右开-left-right" class="headerlink" title="左闭右开[left,right)"></a>左闭右开[left,right)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">	<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> nums.length;</span><br><span class="line">	<span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(nums[mid] &gt; target)&#123;</span><br><span class="line">			right = mid;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)&#123;</span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述例子中由于区间是左闭右开，因此左值会被取到而右值不会，因此左值在数组上，右值在数组外距离为1，因此<code>left = 0</code> ，<code>right = nums.length</code> ，由于右值不会取到，因此左值永远不可能等于右值，因此判断条件为<code>left &lt; right</code> ，且由于右值不会被取到，因此右值可以是已被判断过的值<code>right = mid</code> ，而左值是未判断的值<code>left = mid + 1</code><br><strong>对于使用场景（scenario）来说这两种二分查找的不同之处在于左闭右闭在<code>right = left</code>时不会停止，而左闭右开在循环结束时会停在<code>right = left</code>，因此，在找到第一个等于某个值的元素时（直接循环到不满足条件时），建议使用左闭右开写法</strong></p>
-<p>例：剑指 Offer II 068. 查找插入位置<br>给定一个排序的整数数组 nums 和一个整数目标值 target ，请在数组中找到 target ，并返回其下标。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。<br>请必须使用时间复杂度为 O(log n) 的算法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">searchInsert</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt;= target)&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>考虑<code>right - left = 1</code>时，是最后一次循环，此时<code>mid = left + ((right - left) &gt;&gt; 1)</code>，<code>mid</code>指向<code>left</code>，此时可能产生两种情况<code>nums[mid] &gt;= target</code>或<code>nums[mid] &lt; target</code>，对于第一种情况<code>right</code>左移<code>right = left</code>，第二种情况下<code>left</code>右移<code>right = left</code>，此时返回双指针中的任意一个都是正确答案<br>此外，考虑<code>nums</code>中存在相同元素的情况，当<code>nums[mid] = target</code>时，仍然满足第一个分支<code>nums[mid] &gt;= target</code>，<code>right</code>左移，取最后一个元素采用相反方式</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" data-id="clg6qh0zb00005getg380d4h9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" data-id="clgabyzmf0004nset414j1ci2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -384,6 +459,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -414,23 +494,23 @@
       <ul>
         
           <li>
-            <a href="/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">ReverseLinkedList</a>
+            <a href="/2023/04/10/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/">Linked List Cycle II</a>
           </li>
         
           <li>
-            <a href="/2023/04/07/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8/">DesignLinkedList</a>
+            <a href="/2023/04/10/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4/">Intersection of Two Linked Lists LCCI</a>
           </li>
         
           <li>
-            <a href="/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/">RemoveLinkedListElement</a>
+            <a href="/2023/04/10/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">Remove Count Backwards N th Node</a>
           </li>
         
           <li>
-            <a href="/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/">螺旋矩阵 II</a>
+            <a href="/2023/04/10/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">Swap Nodes in Pairs</a>
           </li>
         
           <li>
-            <a href="/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">长度最小的子数组</a>
+            <a href="/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">Reverse Linked List</a>
           </li>
         
       </ul>
