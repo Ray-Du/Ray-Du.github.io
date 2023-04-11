@@ -64,6 +64,164 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-移除链表元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" class="article-date">
+  <time datetime="2023-04-07T07:53:24.000Z" itemprop="datePublished">2023-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/">Remove Linked List Elements</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="移除链表元素"><a href="#移除链表元素" class="headerlink" title="移除链表元素"></a>移除链表元素</h2><p>给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回新的头节点 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummy, cur = dummy.next;</span><br><span class="line">        <span class="keyword">while</span>(cur != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur.val == val)&#123;</span><br><span class="line">                pre.next = cur.next;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                pre = pre.next;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题的要点除了头结点的特殊处理外，还涉及到了前驱结点的指针越过目标节点指向后继结点（相当于删除目标节点），由于<code>pre.next = cur</code>，因此可以去除<code>cur</code>结点，使用<code>pre.next</code>代替，具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="keyword">while</span>(pre.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pre.next.val == val)&#123;</span><br><span class="line">                pre.next = pre.next.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                pre = pre.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果<code>head = null</code>，不存在<code>pre.next</code>，直接返回，否则当<code>pre.next != null</code>，执行判断结点值以及越过结点操作，操作细节为：当<code>pre.next.val == val</code>时，越过结点；否则<code>pre</code>指针前进</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" data-id="clgbjn0yh000bxoet40rn62nc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-螺旋矩阵-II" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/" class="article-date">
+  <time datetime="2023-04-06T14:48:06.000Z" itemprop="datePublished">2023-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/">Spiral Matrix II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="螺旋矩阵-II"><a href="#螺旋矩阵-II" class="headerlink" title="螺旋矩阵 II"></a>螺旋矩阵 II</h2><p>给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] generateMatrix(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = n - <span class="number">1</span>, t = <span class="number">0</span>, b = n - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">1</span>, end = n * n;</span><br><span class="line">        <span class="type">int</span>[][] ans = <span class="keyword">new</span> <span class="title class_">int</span>[n][n];</span><br><span class="line">        <span class="keyword">while</span>(start &lt;= end)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt;= r; i++) ans[t][i] = start++;</span><br><span class="line">            t++;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> t; i &lt;= b; i++) ans[i][r] = start++;</span><br><span class="line">            r--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> r; i &gt;= l; i--) ans[b][i] = start++;</span><br><span class="line">            b--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> b; i &gt;= t; i--) ans[i][l] = start++;</span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本体难点在于确定起始位置以及终止位置，模拟过程分别为：<code>for(int i = l; i &lt;= r; i++)</code>从左往右（这里由于顶部放完了，因此后续顶部永久下降<code>t++</code>），<code>for(int i = t; i &lt;= b; i++)</code>从上往下（这里由于右侧放完了，因此后续右侧永久左移<code>r--</code>），<code>for(int i = r; i &gt;= l; i--)</code>从右往左（这里由于底部放完了，因此后续底部永久上移<code>b++</code>），<code>for(int i = b; i &gt;= t; i--)</code>从下往上（这里由于左侧放完了，因此后续左侧永久右移<code>l++</code>），重复下一个<code>while</code>循环</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/" data-id="clgbjn0yi000cxoetgykx1j09" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-长度最小的子数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2023-04-06T14:34:52.000Z" itemprop="datePublished">2023-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">Minimum Size Subarray Sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h2><p>给定一个含有 n 个正整数的数组和一个正整数 target 。<br>找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, …, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>, i = <span class="number">0</span>, ans = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; nums.length; j++)&#123;</span><br><span class="line">            sum += nums[j];</span><br><span class="line">            <span class="keyword">while</span>(sum &gt;= target)&#123;</span><br><span class="line">                ans = Math.min(ans, j - i + <span class="number">1</span>);</span><br><span class="line">                sum -= nums[i++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans == Integer.MAX_VALUE ? <span class="number">0</span> : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题使用滑动窗口（同向双指针）求解，首先定义窗口负载大小<code>sum</code>，右指针右移，<code>sum</code>加右指针指向的值，当<code>sum &gt;= target</code>时，记录当前最小的窗口距离，由于两个指针指向同一个位置时是有值的（右指针先加再右移），因此窗口的大小为<code>j - i + 1</code>,<code>sum</code>减左指针指向的值，左指针右移。最后判断是否有<code>ans</code>，判断<code>ans</code>是否是初始值，是<code>ans = 0</code>,否则返回<code>ans</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/06/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" data-id="clgbjn0yl000fxoetcgbu6vr6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-有序数组的平方" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" class="article-date">
+  <time datetime="2023-04-06T14:19:50.000Z" itemprop="datePublished">2023-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/">Sorted Squares</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="有序数组的平方"><a href="#有序数组的平方" class="headerlink" title="有序数组的平方"></a>有序数组的平方</h2><p>给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] sortedSquares(<span class="type">int</span>[] nums) &#123;</span><br><span class="line">        <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> nums.length - <span class="number">1</span>, i = <span class="number">0</span>, j = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] * nums[i] &gt; nums[j] * nums[j])&#123;</span><br><span class="line">                ans[k--] = nums[i] * nums[i++];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ans[k--] = nums[j] * nums[j--];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用相向双指针，对比两指针所指的数的平方，将较大的插入答案数组的位置，答案数组位置左移，若插左指针数，左指针右移<strong>这里注意在乘法的后一个右移，否则就是左指针当前位置乘以左指针下一个位置</strong>，若插入右指针，右指针左移<strong>这里注意在乘法的后一个左移，否则就是右指针当前位置乘以右指针下一个位置</strong>，结束条件为<code>i &lt;= j</code>，这是因为取的是左闭右闭区间，至于最后一次当<code>i = j</code>时进入刚好计算完<code>nums</code>的最后一个值</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/06/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9/" data-id="clgbjn0yf0007xoet0f4p4ytt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-移除元素" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/04/05/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" class="article-date">
@@ -93,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/05/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" data-id="clgabyzmh0007nsetdhv220yb" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/05/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" data-id="clgbjn0yh000axoetcqvs6vqd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -137,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" data-id="clgabyzma0002nsetftw2744n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" data-id="clgbjn0ya0002xoet0iljhlos" class="article-share-link">Share</a>
       
       
     </footer>
@@ -183,23 +341,23 @@
       <ul>
         
           <li>
+            <a href="/2023/04/11/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">Sum Of Two Numbers</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/11/%E5%BF%AB%E4%B9%90%E6%95%B0/">Happy Number</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/11/%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/">Intersection of Two Arrays</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/11/%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/">Valid Anagram</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/10/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/">Linked List Cycle II</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/10/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4/">Intersection of Two Linked Lists LCCI</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/10/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">Remove Count Backwards N th Node</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/10/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">Swap Nodes in Pairs</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/07/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">Reverse Linked List</a>
           </li>
         
       </ul>
