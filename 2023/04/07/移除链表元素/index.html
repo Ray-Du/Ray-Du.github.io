@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Remove Linked List Elements | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="移除链表元素给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val &#x3D;&#x3D; val 的节点，并返回新的头节点 。 123456789101112131415161718class Solution &amp;#123;    public ListNode removeElements(ListNode head, int val)&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Remove Linked List Elements">
+<meta property="og:url" content="http://example.com/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="移除链表元素给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val &#x3D;&#x3D; val 的节点，并返回新的头节点 。 123456789101112131415161718class Solution &amp;#123;    public ListNode removeElements(ListNode head, int val)&amp;#123;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-07T07:53:24.000Z">
+<meta property="article:modified_time" content="2024-12-22T14:37:26.969Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-移除链表元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" class="article-date">
+  <time datetime="2023-04-07T07:53:24.000Z" itemprop="datePublished">2023-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Remove Linked List Elements
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="移除链表元素"><a href="#移除链表元素" class="headerlink" title="移除链表元素"></a>移除链表元素</h2><p>给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val &#x3D;&#x3D; val 的节点，并返回新的头节点 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummy, cur = dummy.next;</span><br><span class="line">        <span class="keyword">while</span>(cur != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur.val == val)&#123;</span><br><span class="line">                pre.next = cur.next;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                pre = pre.next;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题的要点除了头结点的特殊处理外，还涉及到了前驱结点的指针越过目标节点指向后继结点（相当于删除目标节点），由于<code>pre.next = cur</code>，因此可以去除<code>cur</code>结点，使用<code>pre.next</code>代替，具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>();</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="keyword">while</span>(pre.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pre.next.val == val)&#123;</span><br><span class="line">                pre.next = pre.next.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                pre = pre.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果<code>head = null</code>，不存在<code>pre.next</code>，直接返回，否则当<code>pre.next != null</code>，执行判断结点值以及越过结点操作，操作细节为：当<code>pre.next.val == val</code>时，越过结点；否则<code>pre</code>指针前进</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/07/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" data-id="cm4zpuq4m000rog7k62ew1rl8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/07/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Design LinkedList
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/06/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spiral Matrix II</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/12/10/%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC/">Find Bottom Left Tree Value</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/">Balanced Binary Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">Count Complete Tree Nodes</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/">Minimum Depth of Binary Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/">Maximum Depth of N-ary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
